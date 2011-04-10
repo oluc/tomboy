@@ -1,0 +1,21 @@
+<Addin id="TableOfContentAddin"
+	namespace="Tomboy"
+	name="Table of Content"
+	author="Luc Pionchon"
+	description="This Addin shows in a menu the Table of Content of the current Note. Headers are lines formatted with bold+large or bold+huge. Clicking a menu item jumps to the selected header."
+	category="Tools"
+	defaultEnabled="true"
+	version="0.3">
+
+	<Runtime>
+	<Import assembly="TableOfContent.dll" />
+	</Runtime>
+
+	<Dependencies>
+		<Addin id="Tomboy" version="0.10" />
+	</Dependencies>
+
+	<Extension path="/Tomboy/NoteAddins">
+		<NoteAddin type="Tomboy.TableOfContent.TableOfContentNoteAddin" />
+	</Extension>
+</Addin>

@@ -12,6 +12,7 @@ SUBDIRS =				\
 	Sketching			\
 	SshSyncService		\
 	StickyNoteImport	\
+	TableOfContent		\
 	Tasque			\
 	NoteDirectoryWatcher			\
 	Underline		\
