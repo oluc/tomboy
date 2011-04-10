@@ -365,6 +365,7 @@ Tomboy/Addins/RemoveBrokenLinks/Makefile
 Tomboy/Addins/Sketching/Makefile
 Tomboy/Addins/SshSyncService/Makefile
 Tomboy/Addins/StickyNoteImport/Makefile
+Tomboy/Addins/TableOfContent/Makefile
 Tomboy/Addins/Tasque/Makefile
 Tomboy/Addins/Underline/Makefile
 Tomboy/Addins/WebDavSyncService/Makefile
