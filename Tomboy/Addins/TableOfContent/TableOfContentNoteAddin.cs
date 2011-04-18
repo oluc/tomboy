@@ -26,18 +26,23 @@ using System;
 using System.Collections.Generic;
 using Mono.Unix;
 using Gtk;
+using Gdk;
 using Tomboy;
 
 namespace Tomboy.TableOfContent
 {
+	public enum Level {H1, H2, H3, None}; // H1=title, H2:bold/huge, H3:bold/large
+	
 	public class TableOfContentNoteAddin : NoteAddin
 	{
-		Gtk.Menu           menu;
-		Gtk.ImageMenuItem  menu_item;
+		Gtk.ImageMenuItem  menu_item;   // TOC menu entry in the plugin menu
+		Gtk.Menu           menu;        // TOC submenu, containing the TOC
 
 		bool submenu_built;
 
-		public override void Initialize ()
+		Gtk.TextTag tag_bold, tag_large, tag_huge;
+
+		public override void Initialize () // Called when tomboy starts
 		{
 			submenu_built = false;
 		}
@@ -50,20 +55,29 @@ namespace Tomboy.TableOfContent
 
 		public override void OnNoteOpened ()
 		{
-			menu = new Gtk.Menu ();
+			// Build Addin menu item
+			menu         = new Gtk.Menu ();
 			menu.Hidden += OnMenuHidden;
-			menu.ShowAll ();
+			menu.Show();
 
-			menu_item = new Gtk.ImageMenuItem (Catalog.GetString ("Table of content"));
-			menu_item.Image = new Gtk.Image (Gtk.Stock.JumpTo, Gtk.IconSize.Menu);
-			menu_item.Submenu = menu;
+			menu_item            = new Gtk.ImageMenuItem (Catalog.GetString ("Table of content"));
+			menu_item.Image      = new Gtk.Image (Gtk.Stock.JumpTo, Gtk.IconSize.Menu);
+			menu_item.Submenu    = menu;
 			menu_item.Activated += OnMenuItemActivated;
 			menu_item.Show ();
 
-			AddPluginMenuItem (menu_item); //FIXME: to do once on initialize(). only submenu needs repopulate
+			this.AddPluginMenuItem (menu_item);
+
+			// Reacts to key press events
+			this.Window.KeyPressEvent += OnKeyPressed;
+
+			// Header tags
+			tag_bold  = this.Buffer.TagTable.Lookup ("bold");
+			tag_large = this.Buffer.TagTable.Lookup ("size:large");
+			tag_huge  = this.Buffer.TagTable.Lookup ("size:huge");
 		}
 
-		void OnMenuItemActivated (object sender, EventArgs args)
+		private void OnMenuItemActivated (object sender, EventArgs args) // TOC menu entry activated
 		{
 			if (submenu_built == true)
 				return; // submenu already built.  do nothing.
@@ -71,13 +85,13 @@ namespace Tomboy.TableOfContent
 			UpdateMenu ();
 		}
 
-		void OnMenuHidden (object sender, EventArgs args)
+		private void OnMenuHidden (object sender, EventArgs args)
 		{
 			// Force the submenu to rebuild next time it's supposed to show
 			submenu_built = false;
 		}
 
-		void UpdateMenu ()
+		private void UpdateMenu ()
 		{
 			// Clear out the old list
 			foreach (Gtk.MenuItem old_item in menu.Children) {
@@ -104,60 +118,60 @@ namespace Tomboy.TableOfContent
 
 			submenu_built = true;
 		}
+		
+		private Level RangeLevel (Gtk.TextIter start, Gtk.TextIter end)
+		{
+			if( hasTagOverRange (tag_bold, start, end))
+				if      (hasTagOverRange (tag_huge , start, end)) return Level.H2;
+				else if (hasTagOverRange (tag_large, start, end)) return Level.H3;
+			return Level.None;
+		}
 
-		TableOfContentMenuItem [] GetTableOfContentMenuItems ()
+		// Build the menu items
+		private TableOfContentMenuItem [] GetTableOfContentMenuItems ()
 		{
 			List<TableOfContentMenuItem> items = new List<TableOfContentMenuItem> ();
 
 			TableOfContentMenuItem item = null;
 
 			string header = null;
-			int    header_level;
+			Level  header_level;
 			int    header_position;
 
-			Gtk.TextIter iter = this.Note.Buffer.StartIter;
-			Gtk.TextIter eol;
-			Gtk.TextTag bold  = this.Note.Buffer.TagTable.Lookup ("bold");
-			Gtk.TextTag large = this.Note.Buffer.TagTable.Lookup ("size:large");
-			Gtk.TextTag huge  = this.Note.Buffer.TagTable.Lookup ("size:huge");
+			Gtk.TextIter iter, eol;
 
-			//for each line,
+			//for each line of the buffer,
 			//check if the full line has bold and (large or huge) tags
-			header_level = -1;
+			header_level = Level.None;
+			iter = this.Note.Buffer.StartIter;
+			
 			while (iter.IsEnd != true) {
 				eol = iter;
 				eol.ForwardToLineEnd();
-
-				if (hasTagOverRange (bold, iter, eol)) {
-					if (hasTagOverRange (large, iter, eol)) {
-						header_level = 3;
-					}
-					else if (hasTagOverRange (huge, iter, eol)) {
-						header_level = 2;
-					}
-				}
-				if (header_level == 2 || header_level == 3) {
+				
+				header_level = this.RangeLevel (iter, eol);
+				
+				if (header_level == Level.H2 || header_level == Level.H3) {
 					header_position = iter.Offset;
 					header = iter.GetText(eol);
-					if (header_level == 3) header = "└→  " + header;
 					if (items.Count == 0) {
 						//It's the first header found,
 						//we also insert an entry linked to the Note's Title:
-						item = new TableOfContentMenuItem (this.Note, this.Note.Title, 2, 0);
+						item = new TableOfContentMenuItem (this.Note, this.Note.Title, Level.H1, 0);
 						items.Add (item);
 					}
 					item = new TableOfContentMenuItem (this.Note, header, header_level, header_position);
 					items.Add (item);
 				}
 				//next line
-				header_level = -1;
+				header_level = Level.None;
 				iter.ForwardVisibleLine();
 			}
 			return items.ToArray ();
 		}
 
 		//true if tag is set from start to end
-		static bool hasTagOverRange (Gtk.TextTag tag, Gtk.TextIter start, Gtk.TextIter end){
+		static private bool hasTagOverRange (Gtk.TextTag tag, Gtk.TextIter start, Gtk.TextIter end){
 			Gtk.TextIter iter = start;
 			bool has = false;
 			while (iter.Compare(end) != 0 && (has = iter.HasTag(tag))){
@@ -165,5 +179,69 @@ namespace Tomboy.TableOfContent
 			}
 			return has;
 		}
+
+		private void OnKeyPressed (object sender, Gtk.KeyPressEventArgs args)
+		{
+			args.RetVal = false; // not treated
+			
+			// Reacts to Ctrl-1 and Ctrl-2
+			switch (args.Event.Key) {
+			
+			case Gdk.Key.Key_1: 
+					if (args.Event.State == Gdk.ModifierType.ControlMask)
+					{
+						this.HeadificationSwitch (Level.H2);
+						args.RetVal = true;
+						return;
+					}
+					break;
+			
+			case Gdk.Key.Key_2:
+					if (args.Event.State == Gdk.ModifierType.ControlMask)
+					{
+						this.HeadificationSwitch (Level.H3);
+						args.RetVal = true;
+						return;
+					}
+					break;
+			
+			default:
+				args.RetVal = false;
+				return;
+			}
+		}/* OnKeyPressed() */
+		
+		
+		private void HeadificationSwitch (Level header_request) 
+		{
+			// Apply the correct header style ==> switch  H2 <--> H3 <--> text
+			
+			Gtk.TextIter start, end;
+			this.Buffer.GetSelectionBounds (out start, out end);
+			
+			Level current_header = this.RangeLevel (start, end);
+			
+			this.Buffer.RemoveAllTags (start, end);//reset all tags
+			
+			if( current_header == Level.H2 && header_request == Level.H3) //existing vs requested
+			{
+				this.Buffer.SetActiveTag ("bold");
+				this.Buffer.SetActiveTag ("size:large");
+			}
+			else if( current_header == Level.H3 && header_request == Level.H2) 
+			{
+				this.Buffer.SetActiveTag ("bold");
+				this.Buffer.SetActiveTag ("size:huge");
+			}
+			else if( current_header == Level.None)
+			{
+				this.Buffer.SetActiveTag ("bold");
+				this.Buffer.SetActiveTag ( (header_request == Level.H2)?"size:huge":"size:large");
+			}
+			else {/*nothing*/}
+			
+		}/* HeadificationSwitch() */
+		
+		
 	}/*class TableOfContentNoteAddin*/
 }

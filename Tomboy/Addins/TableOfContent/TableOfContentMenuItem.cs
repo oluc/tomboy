@@ -35,19 +35,35 @@ namespace Tomboy.TableOfContent
 
 		public TableOfContentMenuItem (Note   note,
 		                               string header,
-		                               int    header_level,
+		                               Level  header_level,
 		                               int    header_position)
 		                              : base (header)
 		{
 			this.note            = note;
 			this.header_position = header_position;
-
-			//set MenuItem's icon
-			if (header_position == 0) {
+			
+			// Set TOC style
+			/* +------------------+
+			   |[] NOTE TITLE     |
+			   | > Header H2      |
+			   | > Header H2      |
+			   |   └→  Header H3  |
+			   |   └→  Header H3  |
+			   |   └→  Header H3  |
+			   | > Header H2      |
+			   +------------------+ */
+			
+			Gtk.Label label = (Gtk.Label)this.Child;
+			
+			if (header_level == Level.H1) {
 				this.Image = new Gtk.Image (GuiUtils.GetIcon ("note", 16));
+				label.Markup = "<b>"+ note.Title + "</b>";
 			}
-			else if (header_level == 2) {
+			else if (header_level == Level.H2) {
 				this.Image = new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Menu);
+			}
+			else if (header_level == Level.H3) {
+				label.Text = "└→  " + header;
 			}
 		}
 
@@ -56,13 +72,11 @@ namespace Tomboy.TableOfContent
 			if (note == null)
 				return;
 
-			NoteBuffer buffer = note.Buffer; //a GtkTextBuffer subclass
-			Gtk.TextIter header_iter = buffer.GetIterAtOffset (this.header_position);
-			Gtk.TextView editor = note.Window.Editor;
-			editor.ScrollToIter (header_iter, 0.1, true, 0.0, 0.0);
-			//TODO: possibly move the cursor too (?)
-			//TODO: possibly highlight the header (?)
-			//**/Console.WriteLine (this.header_position);
+			// Jump to the header
+			Gtk.TextIter header_iter;
+			header_iter = this.note.Buffer.GetIterAtOffset (this.header_position);
+			note.Window.Editor.ScrollToIter (header_iter, 0.1, true, 0.0, 0.0);
+			this.note.Buffer.PlaceCursor (header_iter);
 		}
 
 	}/*class TableOfContentMenuItem*/
