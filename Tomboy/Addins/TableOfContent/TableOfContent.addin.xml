@@ -5,7 +5,7 @@
 	description="This Addin shows in a menu the Table of Content of the current Note. Headers are lines formatted with bold+large or bold+huge. Clicking a menu item jumps to the selected header."
 	category="Tools"
 	defaultEnabled="true"
-	version="0.3">
+	version="0.4">
 
 	<Runtime>
 	<Import assembly="TableOfContent.dll" />

@@ -1,0 +1,17 @@
+NEWS for Addin: Table of Content
+================================
+
+== 0.4
+  - use bold markup for note title, in toc
+  - on jump, place cursor at header's position.
+  - on Ctrl-1 and Ctrl-2, set header style.
+
+== 0.3
+  - add an explainatory text when TOC is empty
+  - use stock items for icons
+
+== 0.2
+  - mostly working version
+
+== 0.1
+  - basic version
