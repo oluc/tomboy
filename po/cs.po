@@ -197,7 +197,7 @@ msgstr "Exportovat související poznámky do HTML"
 msgid ""
 "If disabled, the \"Delete Note\" confirmation dialog will be suppressed."
 msgstr ""
-"Pokud je vypnuto, ověřovací dialogové okno „Smazat poznámku“ bude potlačeno."
+"Pokud je vypnuto, ověřovací dialogové okno „Odstranit poznámku“ bude potlačeno."
 
 #: ../data/tomboy.schemas.in.h:26
 msgid ""
@@ -293,9 +293,9 @@ msgid ""
 "conflict situation on a case-by-case basis."
 msgstr ""
 "Číselná hodnota, kterou se nastavuje chování ve chvíli, kdy se vyskytne "
-"konflikt synchronizace mezi poznámkami. Možné hodnoty najdete v dialogu "
-"Nastavení -> Synchronizace -> Pokročilé. Akce jsou analogicky číslovány od 0 "
-"(vždy se zeptat) do 2."
+"konflikt synchronizace mezi poznámkami. Možné hodnoty najdete v dialogovém "
+"okně Předvolby -> Synchronizace -> Pokročilé. Akce jsou analogicky číslovány "
+"od 0 (vždy se zeptat) do 2."
 
 #: ../data/tomboy.schemas.in.h:37
 msgid ""
@@ -367,7 +367,7 @@ msgid ""
 "Path to the synchronization server when using the filesystem synchronization "
 "service addin."
 msgstr ""
-"Cesta k synchronizačnímu serveru v případě používání rozšíření synchronizace "
+"Cesta k synchronizačnímu serveru v případě používání doplňku pro synchronizaci "
 "systému souborů."
 
 #: ../data/tomboy.schemas.in.h:50
@@ -517,7 +517,7 @@ msgstr "Obsluhovač pro URL typu „note://“"
 msgid ""
 "The last directory a note was exported to using the Export To HTML plugin."
 msgstr ""
-"Poslední adresář, do kterého byla exportována poznámka pomocí zásuvného "
+"Poslední složka, do které byla exportována poznámka pomocí zásuvného "
 "modulu Exportovat do HTML."
 
 #: ../data/tomboy.schemas.in.h:73
@@ -615,7 +615,7 @@ msgstr "_Soubor"
 
 #: ../Tomboy/ActionManager.cs:130
 msgid "_New"
-msgstr "_Nový"
+msgstr "_Nová"
 
 #: ../Tomboy/ActionManager.cs:131 ../Tomboy/ActionManager.cs:172
 msgid "Create a new note"
@@ -623,7 +623,7 @@ msgstr "Vytvořit novou poznámku"
 
 #: ../Tomboy/ActionManager.cs:134
 msgid "_Open..."
-msgstr "_Otevřít..."
+msgstr "_Otevřít…"
 
 #: ../Tomboy/ActionManager.cs:135
 msgid "Open the selected note"
@@ -631,11 +631,11 @@ msgstr "Otevřít vybranou poznámku"
 
 #: ../Tomboy/ActionManager.cs:138
 msgid "_Delete"
-msgstr "_Smazat"
+msgstr "O_dstranit"
 
 #: ../Tomboy/ActionManager.cs:139
 msgid "Delete the selected note"
-msgstr "Smazat vybranou poznámku"
+msgstr "Odstranit vybranou poznámku"
 
 #: ../Tomboy/ActionManager.cs:142 ../Tomboy/NoteWindow.cs:411
 msgid "_Close"
@@ -655,7 +655,7 @@ msgstr "Ukončit Tomboy"
 
 #: ../Tomboy/ActionManager.cs:150
 msgid "_Edit"
-msgstr "Ú_pravy"
+msgstr "_Upravit"
 
 #: ../Tomboy/ActionManager.cs:154 ../Tomboy/PreferencesDialog.cs:65
 msgid "Tomboy Preferences"
@@ -730,7 +730,7 @@ msgstr "Ikona"
 
 #: ../Tomboy/Addins/Bugzilla/BugzillaPreferences.cs:176
 msgid "Select an icon..."
-msgstr "Vybrat ikonu..."
+msgstr "Vybrat ikonu…"
 
 #. Extra Widget
 #: ../Tomboy/Addins/Bugzilla/BugzillaPreferences.cs:191
@@ -818,7 +818,7 @@ msgstr "_Umístění složky:"
 
 #: ../Tomboy/Addins/FileSystemSyncService/FileSystemSyncServiceAddin.cs:100
 msgid "Select Synchronization Folder..."
-msgstr "Vyberte synchronizační složku..."
+msgstr "Vybrat synchronizační složku…"
 
 #: ../Tomboy/Addins/FileSystemSyncService/FileSystemSyncServiceAddin.cs:127
 msgid "Folder path field is empty."
@@ -827,7 +827,7 @@ msgstr "Nezadali jste umístění složky."
 #: ../Tomboy/Addins/FileSystemSyncService/FileSystemSyncServiceAddin.cs:136
 msgid ""
 "Specified folder path does not exist, and Tomboy was unable to create it."
-msgstr "Zadané umístění složky neexistuje a Tomboy ho nemohl vytvořit."
+msgstr "Zadané umístění složky neexistuje a aplikace Tomboy ho nemohla vytvořit."
 
 #: ../Tomboy/Addins/FileSystemSyncService/FileSystemSyncServiceAddin.cs:214
 msgid "Local Folder"
@@ -1279,7 +1279,7 @@ msgstr "Vytvořit novou poznámku v sešitě"
 #: ../Tomboy/Notebooks/NotebookApplicationAddin.cs:52
 #: ../Tomboy/Notebooks/NotebookApplicationAddin.cs:223
 msgid "New Note_book..."
-msgstr "Nový _sešit..."
+msgstr "Nový _sešit…"
 
 #: ../Tomboy/Notebooks/NotebookApplicationAddin.cs:56
 msgid "_New Note"
@@ -1303,7 +1303,7 @@ msgstr "Odstranit _sešit"
 
 #: ../Tomboy/Notebooks/NotebookApplicationAddin.cs:65
 msgid "Delete the selected notebook"
-msgstr "Smazat vybraný sešit"
+msgstr "Odstranit vybraný sešit"
 
 #: ../Tomboy/Notebooks/NotebookApplicationAddin.cs:68
 #: ../Tomboy/RecentChanges.cs:276
@@ -1366,7 +1366,7 @@ msgstr "Sešit"
 
 #: ../Tomboy/Notebooks/NotebookNoteAddin.cs:177
 msgid "_New notebook..."
-msgstr "Nový _sešit..."
+msgstr "Nový _sešit…"
 
 #: ../Tomboy/Note.cs:515 ../Tomboy/NoteManager.cs:475
 #, csharp-format
@@ -1445,24 +1445,24 @@ msgid ""
 "\n"
 "Ciao!"
 msgstr ""
-"V této verzi aplikace Tomboy jsme změnili adresářovou strukturu aplikace. "
+"V této verzi aplikace Tomboy jsme změnili strukturu složek aplikace. "
 "Pravděpodobně jste nikdy nepátrali po tom, kde jsou vaše poznámky uloženy, a "
 "pokud vás to nezajímá ani teď, <bold>klidně tuto poznámku vymažte</bold> a "
-"pokračujte ve své práci.  :-)\n"
+"pokračujte ve své práci. :-)\n"
 "\n"
-"Adresář s minulými poznámkami je bezpečně uložen v <link:url>{0}</link:"
+"Složka s minulými poznámkami je bezpečně uložen v <link:url>{0}</link:"
 "url> . Všechny starší verze aplikace Tomboy hledají poznámky právě tam.\n"
 "\n"
-"Všechna vaše minulá nastavení a poznámky byly převedeny do nových adresářů, "
+"Všechna vaše minulá nastavení a poznámky byly převedeny do nových složek, "
 "které jsou rozděleny takto:\n"
 "\n"
-"<list><list-item dir=\"ltr\">Vaše poznámky jsou nyní v adresáři <link:url>{1}"
+"<list><list-item dir=\"ltr\">Vaše poznámky jsou nyní ve složce <link:url>{1}"
 "</link:url>\n"
-"</list-item><list-item dir=\"ltr\">Nastavení najdete v adresáři <link:url>{2}"
+"</list-item><list-item dir=\"ltr\">Nastavení najdete ve složce <link:url>{2}"
 "</link:url>\n"
-"</list-item><list-item dir=\"ltr\">Rozšíření instalujte do adresáře <link:"
+"</list-item><list-item dir=\"ltr\">Doplňky instalujte do složek <link:"
 "url>{3}</link:url>\n"
-"</list-item><list-item dir=\"ltr\">Protokoly najdete v adresáři <link:url>{4}"
+"</list-item><list-item dir=\"ltr\">Evidence najdete ve složce <link:url>{4}"
 "</link:url></list-item></list>\n"
 "\n"
 "Ciao!"
@@ -1698,7 +1698,7 @@ msgstr "Uloži_t název"
 
 #: ../Tomboy/NoteWindow.cs:639
 msgid "_Find..."
-msgstr "_Najít..."
+msgstr "_Najít…"
 
 #: ../Tomboy/NoteWindow.cs:650
 msgid "Find _Next"
@@ -1786,7 +1786,7 @@ msgstr "Synchronizace"
 
 #: ../Tomboy/PreferencesDialog.cs:88
 msgid "Add-ins"
-msgstr "Rozšíření"
+msgstr "Doplňky"
 
 #: ../Tomboy/PreferencesDialog.cs:174
 msgid "_Spell check while typing"
@@ -1881,7 +1881,7 @@ msgstr "Vytvořit _novou poznámku"
 #. Open Search All Notes window keybinding...
 #: ../Tomboy/PreferencesDialog.cs:407
 msgid "Open \"Search _All Notes\""
-msgstr "Otevřít „_Prohledat všechny poznámky“"
+msgstr "Otevřít „Hledat ve všech poznámkách“"
 
 #: ../Tomboy/PreferencesDialog.cs:434
 msgid "Ser_vice:"
@@ -1904,15 +1904,15 @@ msgstr "minut"
 #. "Advanced..." button to bring up extra sync config dialog
 #: ../Tomboy/PreferencesDialog.cs:541
 msgid "_Advanced..."
-msgstr "P_okročilé..."
+msgstr "P_okročilé…"
 
 #: ../Tomboy/PreferencesDialog.cs:602
 msgid "The following add-ins are installed"
-msgstr "Máte nainstalována následující rozšíření"
+msgstr "Máte nainstalovány následující doplňky"
 
 #: ../Tomboy/PreferencesDialog.cs:623
 msgid "Get More Add-Ins..."
-msgstr "Získat více doplňků"
+msgstr "Získat více doplňků…"
 
 #: ../Tomboy/PreferencesDialog.cs:641
 msgid "_Enable"
@@ -1944,8 +1944,8 @@ msgid ""
 "When a conflict is detected between a local note and a note on the "
 "configured synchronization server:"
 msgstr ""
-"Když nastane konflikt mezi místní poznámkou a poznámkou na synchronizačním "
-"serveru:"
+"Když nastane konflikt mezi místní poznámkou a poznámkou na nastaveném "
+"synchronizačním serveru:"
 
 #: ../Tomboy/PreferencesDialog.cs:988
 msgid "Always ask me what to do."
@@ -1953,11 +1953,11 @@ msgstr "Vždy se mě zeptat, co dělat."
 
 #: ../Tomboy/PreferencesDialog.cs:992
 msgid "Rename my local note."
-msgstr "Přejmenovat místní poznámku."
+msgstr "Přejmenovat moji místní poznámku."
 
 #: ../Tomboy/PreferencesDialog.cs:996
 msgid "Replace my local note with the server's update."
-msgstr "Zaměnit místní poznámku s poznámkou na serveru."
+msgstr "Zaměnit moji místní poznámku s poznámkou na serveru."
 
 #: ../Tomboy/PreferencesDialog.cs:1142
 msgid "Are you sure?"
@@ -2004,7 +2004,7 @@ msgid ""
 "more information about the error."
 msgstr ""
 "Zkontrolujte zadané informace a zkuste to znovu. Můžete se také zkusit "
-"podívat do souboru {0} s evidencí."
+"podívat do souboru {0} se záznamem."
 
 #: ../Tomboy/PreferencesDialog.cs:1274
 msgid "Error connecting"
@@ -2024,7 +2024,7 @@ msgstr "Copyright:"
 
 #: ../Tomboy/PreferencesDialog.cs:1377
 msgid "Add-in Dependencies:"
-msgstr "Závislosti rozšíření:"
+msgstr "Závislosti doplňků:"
 
 #: ../Tomboy/RecentChanges.cs:100
 msgid "_Search:"
@@ -2036,7 +2036,7 @@ msgstr "Poznámka"
 
 #: ../Tomboy/RecentChanges.cs:373
 msgid "Last Changed"
-msgstr "Naposledy změněno"
+msgstr "Naposledy změněna"
 
 #: ../Tomboy/RecentChanges.cs:512
 msgid "Matches"
@@ -2130,11 +2130,11 @@ msgstr "Stav"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:236
 msgid "Acquiring sync lock..."
-msgstr "Získává se synchronizační zámek..."
+msgstr "Získává se synchronizační zámek…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:239
 msgid "Committing changes..."
-msgstr "Zapisují se změny..."
+msgstr "Zapisují se změny…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:242
 msgid "Synchronizing Notes"
@@ -2142,7 +2142,7 @@ msgstr "Synchronizace poznámek"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:243
 msgid "Synchronizing your notes..."
-msgstr "Vaše poznámky se synchronizují..."
+msgstr "Vaše poznámky se synchronizují…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:244
 msgid "This may take a while, kick back and enjoy!"
@@ -2150,15 +2150,15 @@ msgstr "Tato operace může chvíli trvat, zkuste to později!"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:246
 msgid "Connecting to the server..."
-msgstr "Připojuje se k serveru..."
+msgstr "Připojuje se k serveru…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:252
 msgid "Deleting notes off of the server..."
-msgstr "Ze serveru se odstraňují poznámky..."
+msgstr "Ze serveru se odstraňují poznámky…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:256
 msgid "Downloading new/updated notes..."
-msgstr "Stahují se nové/aktualizované poznámky..."
+msgstr "Stahují se nové/aktualizované poznámky…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:268
 msgid "Server Locked"
@@ -2173,20 +2173,20 @@ msgid ""
 "One of your other computers is currently synchronizing.  Please wait 2 "
 "minutes and try again."
 msgstr ""
-"Jeden z vašich počítačů se právě synchronizuje. Počkejte 2 minuty a poté to "
-"zkuste znovu."
+"Jeden z vašich počítačů se právě synchronizuje. Počkejte prosím 2 minuty "
+"a poté to zkuste znovu."
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:274
 msgid "Preparing to download updates from server..."
-msgstr "Připravuje se stažení změn ze serveru..."
+msgstr "Připravuje se stažení změn ze serveru…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:277
 msgid "Preparing to upload updates to server..."
-msgstr "Připravuje se nahrání změn na server..."
+msgstr "Připravuje se nahrání změn na server…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:280
 msgid "Uploading notes to server..."
-msgstr "Poznámky se nahrávají na server..."
+msgstr "Poznámky se nahrávají na server…"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:283
 msgid "Synchronization Failed"
@@ -2219,11 +2219,11 @@ msgstr[2] "{0} poznámek bylo aktualizováno."
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:299
 msgid "Your notes are now up to date."
-msgstr "Vaše poznámky jsou zaktualizovány."
+msgstr "Vaše poznámky jsou nyní aktualní."
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:303
 msgid "Synchronization Canceled"
-msgstr "Synchronizace zastavena"
+msgstr "Synchronizace zrušena"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:304
 msgid "Synchronization was canceled"
@@ -2235,7 +2235,7 @@ msgstr "Zastavili jste synchronizaci. Nyní můžete okno zavřít."
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:309
 msgid "Synchronization Not Configured"
-msgstr "Synchronizace není nakonfigurována"
+msgstr "Synchronizace nenastavena"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:310
 msgid "Synchronization is not configured"
@@ -2247,7 +2247,7 @@ msgstr "Nastavte prosím synchronizaci v dialogovém okně předvoleb."
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:315
 msgid "Synchronization Service Error"
-msgstr "Chyba synchronizace"
+msgstr "Chyba synchronizační služby"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:316
 msgid "Service error"
@@ -2261,7 +2261,7 @@ msgstr ""
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:334
 msgid "Deleted locally"
-msgstr "Smazáno z disku"
+msgstr "Smazáno místně"
 
 #: ../Tomboy/Synchronization/SyncDialog.cs:337
 msgid "Deleted from server"
@@ -2420,10 +2420,10 @@ msgid ""
 "  --search [text]\t\tOpen the search all notes window with the search text.\n"
 msgstr ""
 "Použití:\n"
-"  --version\t\t\tVypíše informace o verzi.\n"
-"  --help\t\t\tVypíše tuto zprávu o použití.\n"
-"  --note-path [cesta]\t\tNačte/uloží data poznámek v tomto adresáři.\n"
-"  --search [text]\t\tOtevře okno Prohledat všechny poznámky s hledaným "
+"  --version\t\t\tVypsat informace o verzi.\n"
+"  --help\t\t\tVypsat tuto zprávu o použití.\n"
+"  --note-path [cesta]\t\tNačíst/uložit data poznámek v této složce.\n"
+"  --search [text]\t\tOtevřít okno Hledat ve všech poznámkách s hledaným "
 "textem.\n"
 
 #: ../Tomboy/Tomboy.cs:578
@@ -2434,11 +2434,11 @@ msgid ""
 "  --start-here\t\t\tDisplay the 'Start Here' note.\n"
 "  --highlight-search [text]\tSearch and highlight text in the opened note.\n"
 msgstr ""
-"  --new-note\t\t\tVytvoří a zobrazí novou poznámku.\n"
-"  --new-note [název]\t\tVytvoří a zobrazí novou poznámku s názvem.\n"
-"  --open-note [název/url]\tZobrazí existující poznámku odpovídající názvu.\n"
-"  --start-here\t\t\tZobrazí poznámku „Začněte Zde“.\n"
-"  --highlight-search [text]\tVyhledá a zvýrazní text v otevřené poznámce.\n"
+"  --new-note\t\t\tVytvořit a zobrazit novou poznámku.\n"
+"  --new-note [název]\t\tVytvořit a zobrazit novou poznámku s názvem.\n"
+"  --open-note [název/url]\tZobrazit existující poznámku odpovídající názvu.\n"
+"  --start-here\t\t\tZobrazit poznámku „Začněte Zde“.\n"
+"  --highlight-search [text]\tVyhledat a zvýraznit text v otevřené poznámce.\n"
 
 #: ../Tomboy/Tomboy.cs:592
 #, csharp-format
