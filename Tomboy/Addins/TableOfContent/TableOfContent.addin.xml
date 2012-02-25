@@ -2,10 +2,10 @@
 	namespace="Tomboy"
 	name="Table of Content"
 	author="Luc Pionchon"
-	description="This Addin shows in a menu the Table of Content of the current Note. Headers are lines formatted with bold+large or bold+huge. Clicking a menu item jumps to the selected header."
+	description="This Add-in shows in a menu the Table of Content of the current Note. Headers are lines formatted with bold+huge (Ctrl-1) or bold+large (Ctrl-2). Clicking a menu item jumps to the selected header."
 	category="Tools"
 	defaultEnabled="true"
-	version="0.4">
+	version="0.5">
 
 	<Runtime>
 	<Import assembly="TableOfContent.dll" />

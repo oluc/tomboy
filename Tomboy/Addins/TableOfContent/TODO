@@ -1,0 +1,59 @@
+- todo[0.6]: Menu as:
+
+Table of content    Ctrl-Alt-1 >
+                             +----------------------+
+                              *Note title*
+                              1. header
+                              2. header
+                                 2.1 header
+                                 2.2 header
+                             +----------------------+
+                              Mark header 1   Ctrl-1
+                              Mark header 2   Ctrl-2
+                             +----------------------+
+
+OR, when no headers:
+
+                             +----------------------+
+                              *Note title*
+
+                              <explains>
+                             +----------------------+
+                              Mark header 1   Ctrl-1
+                              Mark header 2   Ctrl-2
+                             +----------------------+
+
+(when no headers, still allow to jump to Note title)
+
+- todo[0.6]: show toc menu in contextual menu
+
+- todo[0.7]: add help page (mallard topic)
+
+- todo[0.6?]: show TOC accelerator in menu item, when it has submenu
+
+This does not work. See FIXME
+			//in OnNoteOpened()
+			menu_item.AddAccelerator("activate",
+			                         this.Note.Window.AccelGroup,
+			                         (uint)Gdk.Key.Key_3,
+			                         Gdk.ModifierType.ControlMask,
+			                         AccelFlags.Visible
+			                         );
+			      //FIXME: "activate" this steals the event from KeyPressed
+			      //       "keypress" does not display accel in menu
+
+
+- todo[0.8]: customizable tags, header levels and shortcuts
+
+  shortcut to popup toc: Ctrl-Alt-1
+  each header has:
+  - level            1                2
+  - tags             bold, size:huge  bold, size:large      comma separated list
+  - shortcut         Ctrl-1           Ctrl-2                (? mapping text vs key + modifiers)
+  - visual           N.A. (*)         "└→"                  unicode string (*)
+    (*) stock go-forward icon, or allow "icon:STOCK_NAME" (?)
+
+P1: generic code + file configuration
+P2: UI config
+
+

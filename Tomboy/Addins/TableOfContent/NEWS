@@ -1,6 +1,11 @@
 NEWS for Addin: Table of Content
 ================================
 
+== 0.5
+  - open the toc in a popup menu with Ctrl-Alt-1
+  - when empty toc, keep the expenatory text sensitive = readable
+  - better explanatory message in empty toc
+
 == 0.4
   - use bold markup for note title, in toc
   - on jump, place cursor at header's position.

@@ -79,10 +79,11 @@ namespace Tomboy.TableOfContent
 
 		private void OnMenuItemActivated (object sender, EventArgs args) // TOC menu entry activated
 		{
-			if (submenu_built == true)
-				return; // submenu already built.  do nothing.
-
-			UpdateMenu ();
+			if (submenu_built == false)
+				UpdateMenu ();
+			
+			if(sender == null) // activated pragramatically
+				this.menu.Popup();
 		}
 
 		private void OnMenuHidden (object sender, EventArgs args)
@@ -108,10 +109,21 @@ namespace Tomboy.TableOfContent
 			if (menu.Children.Length == 0) {
 				Gtk.MenuItem item = new Gtk.MenuItem (Catalog.GetString (
 					"The Table of Content is empty\n\n"               +
+					
 					"When you set headers, they will show here\n\n"   +
-					"Headers are lines formatted in 'bold',\n"        +
-					"whith 'large' or 'huge' font size.\n"));
-				item.Sensitive = false;
+					
+					"A header is a complete line formatted with:\n"   +
+					"- level 1: bold + huge \t(Ctrl-1)\n"             +
+					"- level 2: bold + large \t(Ctrl-2)\n\n"          +
+					
+					"You can set the style with normal formatting commands, or\n"      +
+					"Select one line and type Ctrl-1 (resp. Ctrl-2), or\n"             +
+					"On a new line type Ctrl-1 (resp. Ctrl-2) and enter your text\n\n" +
+					
+					"Open the Table of Content in a popup menu with Ctrl-Alt-1"
+					));
+					
+				//item.Sensitive = false; keep it sensitive, so it is readable.
 				item.ShowAll ();
 				menu.Append (item);
 			}
@@ -142,10 +154,9 @@ namespace Tomboy.TableOfContent
 
 			//for each line of the buffer,
 			//check if the full line has bold and (large or huge) tags
-			header_level = Level.None;
 			iter = this.Note.Buffer.StartIter;
 			
-			while (iter.IsEnd != true) {
+			while (iter.IsEnd == false) {
 				eol = iter;
 				eol.ForwardToLineEnd();
 				
@@ -164,7 +175,6 @@ namespace Tomboy.TableOfContent
 					items.Add (item);
 				}
 				//next line
-				header_level = Level.None;
 				iter.ForwardVisibleLine();
 			}
 			return items.ToArray ();
@@ -184,17 +194,24 @@ namespace Tomboy.TableOfContent
 		{
 			args.RetVal = false; // not treated
 			
-			// Reacts to Ctrl-1 and Ctrl-2
 			switch (args.Event.Key) {
 			
 			case Gdk.Key.Key_1: 
-					if (args.Event.State == Gdk.ModifierType.ControlMask)
+					if (args.Event.State == (Gdk.ModifierType.ControlMask | Gdk.ModifierType.Mod1Mask))
+					{
+						this.OnMenuItemActivated (null, null); // activates TOC menu
+						args.RetVal = true;
+						return;
+					}
+					else if (args.Event.State == Gdk.ModifierType.ControlMask)
 					{
 						this.HeadificationSwitch (Level.H2);
 						args.RetVal = true;
 						return;
 					}
-					break;
+					else
+					{ return; }
+			break;
 			
 			case Gdk.Key.Key_2:
 					if (args.Event.State == Gdk.ModifierType.ControlMask)
@@ -203,7 +220,7 @@ namespace Tomboy.TableOfContent
 						args.RetVal = true;
 						return;
 					}
-					break;
+			break;
 			
 			default:
 				args.RetVal = false;
